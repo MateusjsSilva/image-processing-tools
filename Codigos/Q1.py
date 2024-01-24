@@ -11,6 +11,9 @@ class ProcessadorImagem:
     def carregar_imagem(self):
         self.img = cv2.imread(self.input_path, cv2.IMREAD_GRAYSCALE)
 
+    def suavizar_imagem(self):
+        self.img = cv2.GaussianBlur(self.img, (3, 3), 0)
+
     def aplicar_laplaciano(self):
         laplacian = cv2.Laplacian(self.img, cv2.CV_64F)
         self.processed_image = cv2.normalize(laplacian, None, 0, 255, cv2.NORM_MINMAX, dtype=cv2.CV_8U)
@@ -49,6 +52,7 @@ if __name__ == "__main__":
     processador = ProcessadorImagem('img/input/lena_gray.bmp', '')
 
     processador.carregar_imagem()
+    processador.suavizar_imagem()
     processador.aplicar_laplaciano()
     processador.salvar_resultado('lena_gray_laplacian.bmp')
 
@@ -57,13 +61,15 @@ if __name__ == "__main__":
     processador.salvar_resultado('lena_gray_unsharp.bmp')
 
     processador.carregar_imagem()
-    processador.aplicar_highboost_filter(boost_factor=1.5)
+    processador.aplicar_highboost_filter(boost_factor=0.5)
     processador.salvar_resultado('lena_gray_highboost.bmp')
 
     processador.carregar_imagem()
+    processador.suavizar_imagem()
     processador.aplicar_operador_prewitt()
     processador.salvar_resultado('lena_gray_prewitt.bmp')
 
     processador.carregar_imagem()
+    processador.suavizar_imagem()
     processador.aplicar_operador_sobel()
     processador.salvar_resultado('lena_gray_sobel.bmp')

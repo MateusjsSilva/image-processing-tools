@@ -19,17 +19,21 @@ def redimensionar_para_mesmo_tamanho(imagem1, imagem2):
     return imagem1, imagem2_redimensionada
 
 # Carregar as imagens
-imagem1 = cv2.imread('img/input/lena_gray.bmp', cv2.IMREAD_GRAYSCALE)
-imagem2 = cv2.imread('img/output/Q1/lena_gray_unsharp.bmp', cv2.IMREAD_GRAYSCALE)
+#imagem1 = cv2.imread('img/input/lena_gray.bmp', cv2.IMREAD_GRAYSCALE)
+#imagem2 = cv2.imread('img/input/lena_ruido.bmp', cv2.IMREAD_GRAYSCALE)
+
+imagem1 = cv2.imread('img/input/quadrado.png', cv2.IMREAD_GRAYSCALE)
+imagem2 = cv2.imread('img/input/circulo.png', cv2.IMREAD_GRAYSCALE)
 
 # Redimensionar as imagens para terem o mesmo tamanho
-#imagem1, imagem2 = redimensionar_para_mesmo_tamanho(imagem1, imagem2)
+imagem1, imagem2 = redimensionar_para_mesmo_tamanho(imagem1, imagem2)
 
 # Realizar as operações morfológicas
 resultado_uniao = uniao(imagem1, imagem2)
 resultado_intersecao = intersecao(imagem1, imagem2)
 resultado_diferenca = diferenca(imagem1, imagem2)
 
-cv2.imwrite(f'img/output/Q3/imagem_uniao.bmp', resultado_uniao)
-cv2.imwrite(f'img/output/Q3/imagem_intersecao.bmp', resultado_intersecao)
-cv2.imwrite(f'img/output/Q3/imagem_diferenca.bmp', resultado_diferenca)
+# Salvar os resultados
+cv2.imwrite(f'img/output/Q3/imagem_uniao.png', resultado_uniao)
+cv2.imwrite(f'img/output/Q3/imagem_intersecao.png', resultado_intersecao)
+cv2.imwrite(f'img/output/Q3/imagem_diferenca.png', resultado_diferenca)
