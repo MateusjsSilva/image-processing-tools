@@ -1,9 +1,6 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-import cv2
-import numpy as np
-import matplotlib.pyplot as plt
 
 #Read the image for erosion
 img1= cv2.imread("img/input/imagem.png",0)
